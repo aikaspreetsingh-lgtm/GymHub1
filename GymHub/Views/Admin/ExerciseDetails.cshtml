@@ -1,0 +1,36 @@
+﻿@model GymHub.Models.Exercises
+@{
+    ViewData["Title"] = "Exercise Details";
+}
+
+<h2>Exercise Details</h2>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <h4 class="card-title">@Model.Name</h4>
+        <hr />
+
+        <dl class="row">
+           
+
+            <dt class="col-sm-3">Name</dt>
+            <dd class="col-sm-9">@Model.Name</dd>
+
+            <dt class="col-sm-3">PrimaryMuscleGroup</dt>
+            <dd class="col-sm-9">@Model.PrimaryMuscleGroup</dd>
+
+            <dt class="col-sm-3">Equipment Needed</dt>
+            <dd class="col-sm-9">@Model.Equipment</dd>
+
+            <dt class="col-sm-3">Instructions</dt>
+            <dd class="col-sm-9">@Model.Instructions</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="ExerciseEdit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Exercise" class="btn btn-secondary">Back to List</a>
+</div>
+
+

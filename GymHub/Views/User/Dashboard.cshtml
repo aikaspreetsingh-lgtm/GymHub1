@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2>User Dashboard</h2>
+
+<div class="row g-3">
+  
+    <div class="col-md-3">
+        <div class="card p-3">
+            <h5>Total Workout Sessions</h5>
+            <span>@ViewBag.TotalWorkoutSession</span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-3">
+            <h5>Total Workout Sets</h5>
+            <span>@ViewBag.TotalWorkoutSet</span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-2">
+            <h5>Upcoming Class Bookings</h5>
+            <span>@ViewBag.UpcomingClassBooking</span>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="d-flex flex-wrap gap-2">
+    <a class="btn btn-primary" asp-controller="User" asp-action="ProgressMetric">My Progress Metrics</a>
+   
+    <a class="btn btn-primary" asp-controller="User" asp-action="WorkoutSession">My Workout Sessions</a>
+   
+
+    <a class="btn btn-primary" asp-controller="User" asp-action="WorkoutSet">My Workout Sets</a>
+  
+
+    <a class="btn btn-primary" asp-controller="User" asp-action="ClassBooking">My Class Bookings</a>
+   
+
+  
+</div>
+
+

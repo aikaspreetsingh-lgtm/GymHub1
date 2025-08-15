@@ -1,0 +1,22 @@
+﻿@model GymHub.Models.ProgressMetric
+
+@{
+    ViewData["Title"] = "Progress Metric Details";
+}
+
+<h2>Progress Metric Details</h2>
+
+<dl class="row">
+    <dt class="col-sm-3">Date Logged</dt>
+    <dd class="col-sm-9">@Model.LoggedAt.ToString("yyyy-MM-dd")</dd>
+
+    <dt class="col-sm-3">Weight (Kg)</dt>
+    <dd class="col-sm-9">@Model.WeightKg</dd>
+
+    <dt class="col-sm-3">Body Fat (%)</dt>
+    <dd class="col-sm-9">@Model.BodyFatPercent</dd>
+</dl>
+
+
+<a asp-action="ProgressMetric" class="btn btn-secondary">Back</a>
+

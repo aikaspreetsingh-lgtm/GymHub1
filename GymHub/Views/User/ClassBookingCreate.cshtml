@@ -1,0 +1,30 @@
+﻿@model GymHub.Models.ClassBooking
+
+@{
+    ViewData["Title"] = "Book a Class";
+}
+
+<h2>Book a Class</h2>
+
+
+
+<form asp-controller="User" asp-action="ClassBookingCreate" method="post">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="GymClassId">Gym Class</label>
+        <select asp-for="GymClassId" class="form-select" asp-items="ViewBag.GymClassId"></select>
+        <span asp-validation-for="GymClassId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Book</button>
+    <a asp-action="ClassBooking" class="btn btn-secondary">Back</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

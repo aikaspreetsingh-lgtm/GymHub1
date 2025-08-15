@@ -1,0 +1,75 @@
+﻿@model GymHub.Models.WorkoutSession
+
+@{
+    ViewData["Title"] = "Edit Workout Session";
+}
+
+<h2>Edit Workout</h2>
+
+<form asp-action="WorkoutSessionEdit" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+
+    <!-- PerformedOn -->
+    <div class="mb-3">
+        <label asp-for="PerformedOn" class="form-label"></label>
+        <input asp-for="PerformedOn" class="form-control" type="datetime-local"
+               value="@Model.PerformedOn.ToString("yyyy-MM-ddTHH:mm")" />
+        <span asp-validation-for="PerformedOn" class="text-danger"></span>
+    </div>
+
+    <!-- Notes -->
+    <div class="mb-3">
+        <label asp-for="Notes" class="form-label"></label>
+        <textarea asp-for="Notes" class="form-control"></textarea>
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+
+    <!-- Workout Sets -->
+    <h4 class="mt-4">Sets</h4>
+    <p>
+        <a asp-action="WorkoutSetCreate" asp-route-workoutSessionId="@Model.Id" class="btn btn-sm btn-primary">
+            Add Set
+        </a>
+    </p>
+
+    @if (Model.Sets != null && Model.Sets.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Exercise</th>
+                    <th>Reps</th>
+                    <th>Weight</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var s in Model.Sets)
+                {
+                    <tr>
+                        <td>@s.Exercise?.Name</td>
+                        <td>@s.Reps</td>
+                        <td>@s.Weight</td>
+                        <td class="text-end">
+                            <a asp-action="WorkoutSetEdit" asp-route-id="@s.Id" class="btn btn-sm btn-warning">Edit</a>
+                            <a asp-action="WorkoutSetDelete" asp-route-id="@s.Id" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No sets added yet.</p>
+    }
+
+    <!-- Save / Back -->
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="WorkoutSession" class="btn btn-secondary">Back</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

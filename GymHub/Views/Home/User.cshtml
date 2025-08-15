@@ -1,0 +1,15 @@
+﻿@{
+	ViewData["Title"] = "User Page";
+}
+<div class="text-center">
+	<h1 class="display-5">Welcome to User Page</h1>
+	<a asp-controller="User" asp-action="Dashboard" class="btn btn-secondary">
+		<i class="bi bi-arrow-left"></i> Way  to Dashboard
+	</a>
+</div>
+@if (TempData["LoginMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["LoginMessage"]
+    </div>
+}

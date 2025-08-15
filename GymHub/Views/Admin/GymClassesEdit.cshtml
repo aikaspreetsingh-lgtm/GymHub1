@@ -1,0 +1,32 @@
+﻿@model GymHub.Models.GymClass
+@{
+    ViewData["Title"] = "Edit Gym Class";
+}
+
+<h2>Edit Gym Class</h2>
+
+<form asp-action="GymClassesEdit" asp-controller="Admin" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="StartsAt"></label>
+        <input asp-for="StartsAt" type="datetime-local" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="EndsAt"></label>
+        <input asp-for="EndsAt" type="datetime-local" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Capacity"></label>
+        <input asp-for="Capacity" class="form-control" type="number" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Save</button>
+    <a asp-action="GymClasses" class="btn btn-secondary">Back</a>
+</form>
+

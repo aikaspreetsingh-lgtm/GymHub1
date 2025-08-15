@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2>User Dashboard</h2>
+
+<h4>Recent Workouts</h4>
+@if (ViewBag.RecentWorkouts != null && ViewBag.RecentWorkouts.Count > 0)
+{
+        <ul>
+        @foreach (var w in ViewBag.RecentWorkouts)
+        {
+                    <li>@w.PerformedOn.ToShortDateString() - @w.Notes</li>
+        }
+        </ul>
+}
+else
+{
+        <p>No recent workouts found.</p>
+}
+
+<h4>Recent Progress</h4>
+@if (ViewBag.RecentProgress != null && ViewBag.RecentProgress.Count > 0)
+{
+        <ul>
+        @foreach (var p in ViewBag.RecentProgress)
+        {
+                    <li>@p.LoggedAt.ToShortDateString() - @p.MetricName: @p.MetricValue</li>
+        }
+        </ul>
+}
+else
+{
+        <p>No progress logs found.</p>
+}
+
+<h4>Upcoming Classes</h4>
+@if (ViewBag.UpcomingClasses != null && ViewBag.UpcomingClasses.Count > 0)
+{
+        <ul>
+        @foreach (var c in ViewBag.UpcomingClasses)
+        {
+                    <li>@c.Title - @c.StartsAt.ToString("g")</li>
+        }
+        </ul>
+}
+else
+{
+        <p>No upcoming classes.</p>
+}

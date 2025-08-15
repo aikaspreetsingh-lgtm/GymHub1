@@ -1,0 +1,21 @@
+﻿@model GymHub.Models.WorkoutSet
+
+@{
+    ViewData["Title"] = "Workout Set Details";
+}
+
+<h2>Workout Set Details</h2>
+
+<dl class="row">
+    <dt class="col-sm-3">Exercise</dt>
+    <dd class="col-sm-9">@Model.Exercise?.Name</dd>
+
+    <dt class="col-sm-3">Reps</dt>
+    <dd class="col-sm-9">@Model.Reps</dd>
+
+    <dt class="col-sm-3">Weight</dt>
+    <dd class="col-sm-9">@Model.Weight</dd>
+</dl>
+
+
+<a asp-action="WorkoutSet" asp-route-workoutSessionId="@Model.WorkoutSessionId" class="btn btn-secondary">Back</a>

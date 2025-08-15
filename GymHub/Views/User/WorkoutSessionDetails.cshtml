@@ -1,0 +1,45 @@
+﻿@model GymHub.Models.WorkoutSession
+@{
+    ViewData["Title"] = "Workout Details";
+}
+<h2>Workout Details</h2>
+
+<div>
+   
+    <p><strong>Date:</strong> @Model.PerformedOn.ToString("g")</p>
+    <p><strong>Notes:</strong> @Model.Notes</p>
+    <p><strong>User Name:</strong> @Model.User?.FullName</p>
+</div>
+
+<h4>Sets</h4>
+@if (Model.Sets != null && Model.Sets.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>Exercise</th>
+                <th>Reps</th>
+                <th>Weight</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model.Sets)
+            {
+                <tr>
+                    <td>@s.Exercise.Name</td>
+                    <td>@s.Reps</td>
+                    <td>@s.Weight</td>               
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No sets available.</p>
+}
+
+<a asp-action="WorkoutSession" class="btn btn-secondary">Back</a>
+

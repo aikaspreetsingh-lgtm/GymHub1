@@ -1,0 +1,28 @@
+﻿@model GymHub.Models.ProgressMetric
+
+@{
+    ViewData["Title"] = "Delete Progress Metric";
+}
+
+<h2>Delete Progress Metric</h2>
+
+<h4>Are you sure you want to delete this metric?</h4>
+
+<dl class="row">
+    <dt class="col-sm-3">Date Logged</dt>
+    <dd class="col-sm-9">@Model.LoggedAt.ToString("yyyy-MM-dd")</dd>
+
+    <dt class="col-sm-3">Weight (Kg)</dt>
+    <dd class="col-sm-9">@Model.WeightKg</dd>
+
+    <dt class="col-sm-3">Body Fat (%)</dt>
+    <dd class="col-sm-9">@Model.BodyFatPercent</dd>
+</dl>
+
+<form asp-action="ProgressMetricDelete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="ProgressMetric" class="btn btn-secondary">Cancel</a>
+</form>
+

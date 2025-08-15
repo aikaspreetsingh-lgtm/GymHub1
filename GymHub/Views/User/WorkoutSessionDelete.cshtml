@@ -1,0 +1,16 @@
+﻿@model GymHub.Models.WorkoutSession
+@{
+    ViewData["Title"] = "Delete Workout";
+}
+<h2>Delete Workout</h2>
+
+<p>Are you sure you want to delete this workout on <strong>@Model.PerformedOn.ToShortDateString()</strong>?</p>
+
+<form asp-action="WorkoutSessionDelete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="WorkoutSession" class="btn btn-secondary">Cancel</a>
+</form>
+

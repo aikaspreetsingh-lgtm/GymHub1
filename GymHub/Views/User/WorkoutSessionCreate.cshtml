@@ -1,0 +1,33 @@
+﻿@model GymHub.Models.WorkoutSession
+@{
+    ViewData["Title"] = "Create Workout";
+}
+<h2>Create Workout</h2>
+
+<form asp-action="/User/WorkoutSessionCreate" method="post">
+<div asp-validation-summary="All" class="text-danger"></div>
+    @Html.AntiForgeryToken()
+
+
+    <div class="mb-3">
+        <label asp-for="PerformedOn"></label>
+        <input asp-for="PerformedOn" class="form-control" type="datetime-local" />
+        <span asp-validation-for="PerformedOn" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Notes"></label>
+        <textarea asp-for="Notes" class="form-control"></textarea>
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+    
+
+
+    <button asp-action="WorkoutSessionCreate" type="submit" class="btn btn-success">Save</button>
+    <a asp-action="WorkoutSession" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

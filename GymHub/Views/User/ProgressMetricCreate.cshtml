@@ -1,0 +1,38 @@
+﻿@model GymHub.Models.ProgressMetric
+
+@{
+    ViewData["Title"] = "Add Progress Metric";
+}
+
+<h2>Add Progress Metric</h2>
+
+<form asp-controller="User" asp-action="/User/ProgressMetricCreate" method="post">   
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="LoggedAt" class="form-label"></label>
+        <input asp-for="LoggedAt" class="form-control" type="date" />
+        <span asp-validation-for="LoggedAt" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="WeightKg" class="form-label"></label>
+        <input asp-for="WeightKg" class="form-control" />
+        <span asp-validation-for="WeightKg" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="BodyFatPercent" class="form-label"></label>
+        <input asp-for="BodyFatPercent" class="form-control" />
+        <span asp-validation-for="BodyFatPercent" class="text-danger"></span>
+    </div>
+
+    <button asp-action="ProgressMetricCreate" type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="ProgressMetric" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

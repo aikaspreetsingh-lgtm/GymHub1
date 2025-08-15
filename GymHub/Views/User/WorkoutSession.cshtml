@@ -1,0 +1,39 @@
+﻿@model IEnumerable<GymHub.Models.WorkoutSession>
+@{
+    ViewData["Title"] = "Workouts";
+}
+<h2>Your Workouts</h2>
+
+<a asp-controller="User" asp-action="WorkoutSessionCreate" class="btn btn-primary">Add Workout</a>
+<a asp-controller="User" asp-action="Dashboard" class="btn btn-secondary">
+    <i class="bi bi-arrow-left"></i> Back to Dashboard
+</a>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+           
+            <th>Date</th>
+            <th>Notes</th>
+            <th>User</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var workout in Model)
+        {
+            <tr>
+                
+                <td>@workout.PerformedOn.ToShortDateString()</td>
+                <td>@workout.Notes</td>
+                <td>@workout.User?.FullName</td>
+                <td class="text-end">
+                    <a asp-controller="User" asp-action="WorkoutSessionEdit" asp-route-id="@workout.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-controller="User" asp-action="WorkoutSessionDelete" asp-route-id="@workout.Id" class="btn btn-sm btn-danger">Delete</a>
+                    <a asp-controller="User" asp-action="WorkoutSessionDetails" asp-route-id="@workout.Id" class="btn btn-sm btn-warning">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

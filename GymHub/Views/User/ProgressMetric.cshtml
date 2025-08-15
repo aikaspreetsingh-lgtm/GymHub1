@@ -1,0 +1,38 @@
+﻿@model IEnumerable<GymHub.Models.ProgressMetric>
+
+@{
+    ViewData["Title"] = "Progress Metrics";
+}
+
+<h2>Progress Metrics</h2>
+
+<a asp-controller="User" asp-action="ProgressMetricCreate" class="btn btn-primary">Add Progess</a>
+<a asp-controller="User" asp-action="Dashboard" class="btn btn-secondary">
+    <i class="bi bi-arrow-left"></i> Back to Dashboard
+</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Date Logged</th>
+            <th>Weight (Kg)</th>
+            <th>Body Fat (%)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var metric in Model)
+        {
+            <tr>
+                <td>@metric.LoggedAt.ToString("yyyy-MM-dd")</td>
+                <td>@metric.WeightKg</td>
+                <td>@metric.BodyFatPercent</td>
+                <td class="text-end">
+                    <a asp-action="ProgressMetricDetails" asp-route-id="@metric.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-action="ProgressMetricEdit" asp-route-id="@metric.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="ProgressMetricDelete" asp-route-id="@metric.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,28 @@
+﻿@model GymHub.Models.ClassBooking
+
+@{
+    ViewData["Title"] = "Cancel Booking";
+}
+
+<h2>Cancel Booking</h2>
+
+<h4>Are you sure you want to cancel this booking?</h4>
+
+<dl class="row">
+    <dt class="col-sm-3">Class</dt>
+    <dd class="col-sm-9">@Model.GymClass?.Title</dd>
+
+    <dt class="col-sm-3">Starts</dt>
+    <dd class="col-sm-9">@Model.GymClass?.StartsAt</dd>
+
+    <dt class="col-sm-3">Booked At</dt>
+    <dd class="col-sm-9">@Model.BookedAt</dd>
+</dl>
+
+<form asp-action="ClassBookingDelete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Cancel Booking</button>
+    <a asp-action="ClassBooking" class="btn btn-secondary">Back</a>
+</form>
+

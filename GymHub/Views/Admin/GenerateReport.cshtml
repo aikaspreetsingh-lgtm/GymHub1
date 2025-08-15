@@ -1,0 +1,60 @@
+﻿@model GymHub.ViewModels.ReportFilterViewModel
+@{
+    ViewData["Title"] = "Generate Report";
+}
+
+<h2>Generate User Report</h2>
+<p>Users in dropdown: @((ViewBag.FullNames as SelectList)?.Count())</p>
+<form method="post" asp-action="GenerateReport" asp-controller="Admin">
+    <div class="form-group">
+        <label>Select User by Full Name (or leave blank for all)</label>
+        <select asp-for="SelectedFullName" asp-items="ViewBag.FullName" class="form-control">
+            <option value="">-- All Users --</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Generate</button>
+    <a asp-controller="Admin" asp-action="Dashboard" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Back to Dashboard
+    </a>
+</form>
+<hr />
+@if (Model.Users != null)
+{
+    <p>Found @Model.Users.Count users</p>
+}
+    <h3>Results</h3>
+    @foreach (var user in Model.Users)
+    {
+        <div class="card mt-3 p-3 border">
+            <h4>@user.FullName</h4>
+
+            <p><strong>Class Bookings:</strong> @user.ClassBookings?.Count</p>
+            <ul>
+                @foreach (var cb in user.ClassBookings)
+                {
+                    <li>@cb.GymClass?.Title - @cb.BookedAt.ToShortDateString()</li>
+                }
+            </ul>
+            <p><strong>Progress Metrics:</strong> @user.ProgressMetric?.Count</p>
+            <ul>
+                @foreach (var pm in user.ProgressMetric)
+                {
+                    <li>@pm.LoggedAt.ToShortDateString() - @pm.WeightKg</li>
+                }
+            </ul>
+            <p><strong>Workout Sessions:</strong> @user.WorkoutSession?.Count</p>
+            <ul>
+                @foreach (var ws in user.WorkoutSession)
+                {
+                    <li>@ws.PerformedOn.ToShortDateString() - Sets: @ws.Sets?.Count</li>
+                }
+            </ul>
+            <form method="post" asp-action="GenerateReportPdf" asp-controller="Admin">
+                <div class="form-group">
+                    <input type="hidden" name="SelectedFullName" value="@Model.SelectedFullName" />
+                    <button type="submit" class="btn btn-danger">Download PDF</button>
+                </div>
+            </form>
+        </div>   
+}
+

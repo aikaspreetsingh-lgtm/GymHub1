@@ -1,0 +1,15 @@
+﻿@model GymHub.Models.GymClass
+@{
+    ViewData["Title"] = "Delete Gym Class";
+}
+
+<h2>Delete Gym Class</h2>
+<p>Are you sure you want to delete <strong>@Model.Title</strong>?</p>
+
+<form asp-action="GymClassDelete" asp-controller="Admin" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <button class="btn btn-danger" type="submit">Delete</button>
+    <a asp-action="GymClasses" class="btn btn-secondary">Cancel</a>
+</form>
+

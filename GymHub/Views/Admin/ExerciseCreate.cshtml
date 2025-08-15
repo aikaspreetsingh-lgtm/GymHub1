@@ -1,0 +1,35 @@
+﻿@model GymHub.Models.Exercises;
+@{
+    ViewData["Title"] = "Create Exercise";
+}
+
+<h2>Create Exercise</h2>
+
+<form asp-action="ExerciseCreate" method="post">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+   
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PrimaryMuscleGroup" class="form-label"></label>
+        <input asp-for="PrimaryMuscleGroup" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Equipment" class="form-label"></label>
+        <input asp-for="Equipment" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Instructions" class="form-label"></label>
+        <textarea asp-for="Instructions" class="form-control" rows="4"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Create</button>
+    <a asp-action="Exercise" class="btn btn-secondary">Back</a>
+</form>
+

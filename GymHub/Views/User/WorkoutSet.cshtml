@@ -1,0 +1,50 @@
+﻿@model IEnumerable<GymHub.Models.WorkoutSet>
+
+@{
+    ViewData["Title"] = "Workout Set";
+}
+
+<h2>Workout Sets</h2>
+
+
+<p>
+    <a class="btn btn-primary"
+       asp-controller="User"
+       asp-action="WorkoutSetCreate"
+       asp-route-workoutSessionId="@ViewBag.WorkoutSessionId">
+        Add Set
+    </a>
+    <a asp-controller="User" asp-action="Dashboard" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Back to Dashboard
+    </a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Exercise</th>
+            <th>Reps</th>
+            <th>Weight</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.Exercise?.Name</td>
+                <td>@s.Reps</td>
+                <td>@s.Weight</td>
+                <td class="text-end">
+                    <a asp-controller="User" asp-action="WorkoutSetDetails" asp-route-id="@s.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-controller="User" asp-action="WorkoutSetEdit" asp-route-id="@s.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-controller="User" asp-action="WorkoutSetDelete" asp-route-id="@s.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="WorkoutSession" asp-controller="User" asp-route-id="@ViewBag.WorkoutSessionId" class="btn btn-secondary">
+    Back to Workout
+</a>

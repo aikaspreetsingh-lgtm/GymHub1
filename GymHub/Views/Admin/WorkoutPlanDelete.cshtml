@@ -1,0 +1,15 @@
+﻿@model GymHub.Models.WorkoutPlan
+@{
+    ViewData["Title"] = "Delete Workout Plan Template";
+}
+
+<h2>Delete Workout Plan Template</h2>
+<p>Are you sure you want to delete <strong>@Model.Title</strong>?</p>
+
+<form asp-action="WorkoutPlanDelete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="WorkoutPlan" class="btn btn-secondary">Cancel</a>
+</form>
+

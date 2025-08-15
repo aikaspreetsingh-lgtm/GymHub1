@@ -1,0 +1,39 @@
+﻿@model GymHub.Models.GymClass
+@{
+    ViewData["Title"] = "Gym Class Details";
+}
+
+<h2>Gym Class Details</h2>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <h4 class="card-title">@Model.Title</h4>
+        <hr />
+
+        <dl class="row">
+            <dt class="col-sm-3">ID</dt>
+            <dd class="col-sm-9">@Model.Id</dd>
+
+            <dt class="col-sm-3">Title</dt>
+            <dd class="col-sm-9">@Model.Title</dd>
+
+            <dt class="col-sm-3">Starts At</dt>
+            <dd class="col-sm-9">@Model.StartsAt.ToString("g")</dd>
+
+            <dt class="col-sm-3">Ends At</dt>
+            <dd class="col-sm-9">@Model.EndsAt.ToString("g")</dd>
+
+            <dt class="col-sm-3">Capacity</dt>
+            <dd class="col-sm-9">@Model.Capacity</dd>
+
+            <dt class="col-sm-3">Bookings Count</dt>
+            <dd class="col-sm-9">@Model.Bookings?.Count() ?? 0</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="GymClassesEdit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="GymClasses" class="btn btn-secondary">Back to List</a>
+</div>
+

@@ -1,0 +1,30 @@
+﻿@model GymHub.Models.WorkoutSet
+
+@{
+    ViewData["Title"] = "Delete Workout Set";
+}
+
+<h2>Delete Workout Set</h2>
+
+<h4>Are you sure you want to delete this set?</h4>
+
+<dl class="row">
+    <dt class="col-sm-3">Exercise</dt>
+    <dd class="col-sm-9">@Model.Exercise?.Name</dd>
+
+    <dt class="col-sm-3">Reps</dt>
+    <dd class="col-sm-9">@Model.Reps</dd>
+
+    <dt class="col-sm-3">Weight</dt>
+    <dd class="col-sm-9">@Model.Weight</dd>
+</dl>
+
+<form asp-action="WorkoutSetDelete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="WorkoutSessionId" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="WorkoutSet" asp-route-workoutSessionId="@Model.WorkoutSessionId" class="btn btn-secondary">Cancel</a>
+</form>
+
+
